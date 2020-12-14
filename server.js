@@ -19,17 +19,11 @@ app.get("/", function (req, res) {
 });
 
 app.get("/api/timestamp/:date", function (req, res) {
-  // if (/^\d{5,}$/.test(req.params.date)) {
-  //   return res.json({
-  //     unix: req.params.date,
-  //     utc: new Date(parseInt(req.params.date)).toUTCString()
-  //   });
-  // }
-
-  if (/\d{5,}/.test(req.params.date)) {
-    const dateInt = parseInt(req.params.date);
-    //Date regards numbers as unix timestamps, strings are processed differently
-    return res.json({ unix: req.params.date, utc: new Date(dateInt).toUTCString() });
+  if (/^\d{5,}$/.test(req.params.date)) {
+    return res.json({
+      unix: req.params.date,
+      utc: new Date(parseInt(req.params.date)).toUTCString()
+    });
   }
 
   const date = new Date(req.params.date);
