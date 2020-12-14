@@ -18,9 +18,14 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-app.get("/api/timestamp/:date?", function (req, res) {
-  
-  const date = new Date();
+app.get("/api/timestamp/:date", function (req, res) {
+  const date = new Date(req.params.date);
+
+  if (date.toString() === "Invalid Date") {
+    res.json({
+      error: "Invalid Date"
+    });
+  }
 
   res.json({
     unix: date.getTime(),
@@ -29,7 +34,6 @@ app.get("/api/timestamp/:date?", function (req, res) {
 });
 
 app.get("/api/timestamp", function (req, res) {
-  
   const date = new Date();
 
   res.json({
