@@ -21,7 +21,7 @@ app.get("/", function (req, res) {
 app.get("/api/timestamp/:date", function (req, res) {
   if (/^\d{5,}$/.test(req.params.date)) {
     return res.json({
-      unix: req.params.date,
+      unix: parseInt(req.params.date),
       utc: new Date(parseInt(req.params.date)).toUTCString()
     });
   }
