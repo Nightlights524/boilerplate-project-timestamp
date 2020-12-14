@@ -18,6 +18,16 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+app.get("/api/timestamp/:date?", function (req, res) {
+  
+  const date = new Date();
+
+  res.json({
+    unix: date.getTime(),
+    utc: date.toUTCString()
+  });
+});
+
 app.get("/api/timestamp", function (req, res) {
   
   const date = new Date();
